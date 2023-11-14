@@ -1,10 +1,10 @@
 # todo-nodejs
 
 ### To run project:
-npm run build
+`npm run build`
 
 ### To Run tests:
-npm test
+`npm test`
 
 ### To run CLI:
 `npm run build`
