@@ -1,36 +1,40 @@
-declare global {
-	interface Window {
-		addTask: () => void;
-	}
-}
+import { TaskList, Todo, Task } from '../todo/index.js';
 
-import { Task, TaskList } from '../todo/index';
+const input: HTMLInputElement | null = document.querySelector('.task-input');
+const button: HTMLButtonElement | null = document.querySelector('.task-add');
+const list: HTMLUListElement | null = document.querySelector('.list');
 
-const taskList = new TaskList();
+const tasks = new TaskList();
 
-function addTask() {
-	const input = document.querySelector('.task-input') as HTMLInputElement;
-	console.log(input);
-	const title = input.value;
-	const newTask = new Task(Math.random() * Date.now(), title, false);
-	taskList.addTask(newTask);
-	input.value = '';
+button?.addEventListener('click', () => {
+	if (!input?.value) return;
+	const newTask: Todo = {
+		id: tasks.tasks.length + 1,
+		title: input.value,
+		completed: false,
+	};
+	// console.log(newTask);
 
-	getTasks();
-}
+	const task = new Task(newTask.id, newTask.title, newTask.completed);
+	tasks.addTask(task);
+	// console.log(tasks.tasks);
 
-function getTasks() {
-	const taskListElement = document.getElementById(
-		'taskList'
-	) as HTMLUListElement;
-	taskListElement.innerHTML = '';
-
-	const tasks = taskList.getTasks();
-	tasks.forEach((task) => {
-		const listItem = document.createElement('li');
-		listItem.textContent = task.title;
-		taskListElement.appendChild(listItem);
+	const li = document.createElement('li');
+	li.innerHTML = `
+			<input class="checkbox" type="checkbox" ${task.completed ? 'checked' : ''} />
+			${task.title}
+			<button class="remove">X</button>
+		`;
+	const btnRemove = li.querySelector('.remove');
+	btnRemove?.addEventListener('click', () => {
+		tasks.removeTask(task.id);
+		list?.removeChild(li);
 	});
-}
-
-window.addTask = addTask;
+	const checkbox = li.querySelector('.checkbox');
+	checkbox?.addEventListener('change', () => {
+		tasks.changeStatus(task.id);
+		console.log(task);
+	});
+	input.value = '';
+	list?.appendChild(li);
+});
