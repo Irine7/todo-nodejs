@@ -5,8 +5,9 @@
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
-		"build": "tsc --build tsconfig.json",
+		"build": "tsc --build tsconfig.json && npm run copy-css",
 		"build:watch": "tsc --build tsconfig.json --watch",
+		"copy-css": "cp src/front/*.css dist/front",
 		"test": "jest --coverage"
 	},
 	"keywords": [],
