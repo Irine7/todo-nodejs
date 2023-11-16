@@ -1,4 +1,4 @@
-# ToDo List Application
+👩‍💻📚🍀 # ToDo List Application
 
 A simple ToDo List application with both server and client components, tests, CLI, and GitHub Actions.
 
