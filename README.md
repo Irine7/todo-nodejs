@@ -23,6 +23,7 @@ This ToDo List application is designed to help users manage their tasks effectiv
 1. Install dependencies for server part:
    `cd todo-nodejs`
    `npm i`
+   
 2  Usage.
    - To run project:
     `npm run build`
