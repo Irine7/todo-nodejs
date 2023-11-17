@@ -60,7 +60,7 @@ async function addTask() {
 		},
 	]);
 
-	const newTask = new Task(Math.random() * Date.now(), answers.text, false);
+	const newTask = new Task(Math.round(Math.random() * 100), answers.text, false);
 	taskList.addTask(newTask);
 	console.log('Task added successfully!');
 }
