@@ -5,14 +5,11 @@ export interface Todo {
 }
 
 export class Task implements Todo {
-	id: number;
-	title: string;
-	completed: boolean;
-	constructor(id: number, title: string, completed: boolean) {
-		this.id = id;
-		this.title = title;
-		this.completed = completed;
-	}
+	constructor(
+	public id: number,
+	public title: string,
+	public completed: boolean
+	) {}
 }
 
 const newTask = new Task(1, 'New Task', false);
